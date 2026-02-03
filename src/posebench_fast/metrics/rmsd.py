@@ -1,4 +1,4 @@
-# Taken from https://github.com/RMeli/spyrmsd and https://github.com/gcorso/DiffDock/
+# Based on https://github.com/RMeli/spyrmsd
 
 import signal
 from contextlib import contextmanager

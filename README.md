@@ -173,7 +173,6 @@ metrics_df, scored = get_final_results_for_df(
 - **[PoseBench](https://github.com/BioinfoMachineLearning/PoseBench)** - Original comprehensive benchmark suite for molecular docking. Use if you need full datasets and reproducible benchmark runs.
 - [spyrmsd](https://github.com/RMeli/spyrmsd) - Symmetry-corrected RMSD algorithms
 - [PoseBusters](https://github.com/maabuu/posebusters) - Full physical validity validation (27 tests)
-- [DiffDock](https://github.com/gcorso/DiffDock) - Fast filter implementations origin
 
 ## License
 
