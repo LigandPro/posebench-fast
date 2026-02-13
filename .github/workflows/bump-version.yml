@@ -29,7 +29,7 @@ jobs:
           from pathlib import Path
 
           text = Path("pyproject.toml").read_text(encoding="utf-8")
-          m = re.search(r'(?m)^version\\s*=\\s*\\"([^\\"]+)\\"\\s*$', text)
+          m = re.search(r'(?m)^version\s*=\s*"([^"]+)"\s*$', text)
           if not m:
               raise SystemExit("ERROR: Could not find version in pyproject.toml")
           print(m.group(1))
@@ -53,7 +53,7 @@ jobs:
           pyproject = Path("pyproject.toml")
           py_text = pyproject.read_text(encoding="utf-8")
           py_text2, n = re.subn(
-              r'(?m)^version\\s*=\\s*\\"[^\\"]+\\"\\s*$',
+              r'(?m)^version\s*=\s*"[^"]+"\s*$',
               f'version = \"{new}\"',
               py_text,
               count=1,
@@ -65,7 +65,7 @@ jobs:
           init_path = Path("src/posecheck_fast/__init__.py")
           init_text = init_path.read_text(encoding="utf-8")
           init_text2, n2 = re.subn(
-              r'(?m)^__version__\\s*=\\s*\\"[^\\"]+\\"\\s*$',
+              r'(?m)^__version__\s*=\s*"[^"]+"\s*$',
               f'__version__ = \"{new}\"',
               init_text,
               count=1,
