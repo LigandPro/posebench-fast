@@ -1,6 +1,6 @@
 """Fast PoseBusters filters for docking evaluation."""
 
-from posebench_fast.filters.fast_filters import (
+from posecheck_fast.filters.fast_filters import (
     calc_posebusters,
     check_geometry,
     check_intermolecular_distance,

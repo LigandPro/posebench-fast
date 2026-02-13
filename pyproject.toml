@@ -1,5 +1,5 @@
 [project]
-name = "posebench-fast"
+name = "posecheck-fast"
 version = "0.1.6"
 description = "Fast docking evaluation metrics: symmetry-corrected RMSD and PoseBusters filters"
 readme = "README.md"
@@ -32,7 +32,7 @@ requires = ["uv_build"]
 build-backend = "uv_build"
 
 [tool.uv.build-backend]
-module-name = "posebench_fast"
+module-name = "posecheck_fast"
 
 [dependency-groups]
 dev = [

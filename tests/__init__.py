@@ -1,1 +1,1 @@
-"""Tests for posebench-fast."""
+"""Tests for posecheck-fast."""

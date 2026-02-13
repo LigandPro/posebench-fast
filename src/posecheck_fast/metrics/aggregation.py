@@ -6,7 +6,7 @@ import numpy as np
 import pandas as pd
 from tqdm import tqdm
 
-from posebench_fast.metrics.rmsd import (
+from posecheck_fast.metrics.rmsd import (
     TimeoutException,
     get_symmetry_rmsd_with_isomorphisms,
 )

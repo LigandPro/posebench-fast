@@ -14,7 +14,7 @@ def test_check_intermolecular_distance_with_protein_hydrogens():
     causing a shape mismatch / ``IndexError`` whenever the protein PDB
     contained explicit hydrogen atoms.
     """
-    from posebench_fast.filters.fast_filters import check_intermolecular_distance
+    from posecheck_fast.filters.fast_filters import check_intermolecular_distance
 
     rng = np.random.default_rng(42)
 
@@ -69,7 +69,7 @@ def test_check_intermolecular_distance_with_protein_hydrogens():
 
 def test_check_intermolecular_distance_no_hydrogens():
     """Sanity check: works correctly when protein has zero H atoms."""
-    from posebench_fast.filters.fast_filters import check_intermolecular_distance
+    from posecheck_fast.filters.fast_filters import check_intermolecular_distance
 
     rng = np.random.default_rng(123)
 
