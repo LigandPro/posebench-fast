@@ -20,18 +20,7 @@ uv pip install posecheck-fast
 
 ## Performance
 
-**Up to ~4600x faster than full PoseBusters** on large pose batches, with optional GPU acceleration via PyTorch.
-
-Benchmarked on **Kolmogorov** (AMD EPYC 9274F, 6x RTX 4090), **PDB 6LU7**, ligand from SMILES `CCNOC`.
-
-| Poses (N) | PoseBusters (full) | posecheck-fast (CPU) | posecheck-fast (GPU) | Speedup vs PoseBusters |
-|---:|---:|---:|---:|---:|
-| 128 | 141.17 ms/pose (median) | 0.120 ms/pose (median) | 0.423 ms/pose (median) | 1175x (CPU), 334x (GPU) |
-| 2048 | 157.58 ms/pose (1 run) | 0.0841 ms/pose (median) | 0.0342 ms/pose (median) | 1874x (CPU), 4608x (GPU) |
-
-Notes:
-- PoseBusters runs the full suite; posecheck-fast runs a small, fast subset of checks.
-- GPU can be slower for small N due to overhead; it shines at larger batch sizes.
+Designed for throughput: **~0.03–0.12 ms/pose** on the fast filter set (CPU/GPU depending on batch size).
 
 ## Usage
 
