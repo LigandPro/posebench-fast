@@ -7,8 +7,6 @@
 
 Fast docking evaluation metrics: symmetry-corrected RMSD and lightweight PoseBusters filters.
 
-The package is CUDA-aware through PyTorch-backed operations: if a CUDA-capable GPU is available and supported tensors are used, GPU acceleration can be leveraged for faster execution.
-
 ## Installation
 
 ```bash
@@ -20,11 +18,20 @@ uv pip install posecheck-fast
 - **Symmetry-corrected RMSD** — accounts for molecular symmetry (benzene, carboxylates, etc.)
 - **Fast PoseBusters filters** — 4 key checks in ~10ms instead of full 27-test suite (~1-2s)
 
-## Validation
+## Performance
 
-- Repository and package rename to `posecheck-fast` has been completed.
-- PyPI package `posecheck-fast` is published.
-- `uv run pytest -q` completed successfully (`6 passed`).
+**Up to ~4600x faster than full PoseBusters** on large pose batches, with optional GPU acceleration via PyTorch.
+
+Benchmarked on **Kolmogorov** (AMD EPYC 9274F, 6x RTX 4090), **PDB 6LU7**, ligand from SMILES `CCNOC`.
+
+| Poses (N) | PoseBusters (full) | posecheck-fast (CPU) | posecheck-fast (GPU) | Speedup vs PoseBusters |
+|---:|---:|---:|---:|---:|
+| 128 | 141.17 ms/pose (median) | 0.120 ms/pose (median) | 0.423 ms/pose (median) | 1175x (CPU), 334x (GPU) |
+| 2048 | 157.58 ms/pose (1 run) | 0.0841 ms/pose (median) | 0.0342 ms/pose (median) | 1874x (CPU), 4608x (GPU) |
+
+Notes:
+- PoseBusters runs the full suite; posecheck-fast runs a small, fast subset of checks.
+- GPU can be slower for small N due to overhead; it shines at larger batch sizes.
 
 ## Usage
 
@@ -40,7 +47,6 @@ rmsd = get_symmetry_rmsd_with_isomorphisms(true_coords, pred_coords, isomorphism
 from posecheck_fast import check_intermolecular_distance
 
 # Fast filters: not_too_far_away, no_clashes, no_volume_clash, no_internal_clash
-# Uses CUDA automatically when available (otherwise falls back to CPU).
 results = check_intermolecular_distance(
     mol_orig=rdkit_mol,
     pos_pred=pred_positions,      # (n_samples, n_atoms, 3)
