@@ -15,7 +15,7 @@ concurrency:
 jobs:
   release:
     # Avoid release loops when this workflow pushes the version bump commit.
-    if: github.actor != 'github-actions[bot]'
+    if: ${{ github.actor != 'github-actions[bot]' }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -118,13 +118,13 @@ jobs:
         run: uv build
 
       - name: Publish to PyPI (token)
-        if: secrets.PYPI_API_TOKEN != ''
+        if: ${{ secrets.PYPI_API_TOKEN != '' }}
         uses: pypa/gh-action-pypi-publish@release/v1
         with:
           password: ${{ secrets.PYPI_API_TOKEN }}
 
       - name: Publish to PyPI (trusted publishing)
-        if: secrets.PYPI_API_TOKEN == ''
+        if: ${{ secrets.PYPI_API_TOKEN == '' }}
         uses: pypa/gh-action-pypi-publish@release/v1
 
       - name: Create GitHub release
@@ -145,4 +145,3 @@ jobs:
             --title "$TAG" \
             --generate-notes \
             --target "$TARGET"
-
