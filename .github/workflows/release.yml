@@ -125,9 +125,9 @@ jobs:
         with:
           password: ${{ env.PYPI_API_TOKEN }}
 
-      - name: Publish to PyPI (trusted publishing)
+      - name: Skip PyPI publish (no token)
         if: ${{ env.PYPI_API_TOKEN == '' }}
-        uses: pypa/gh-action-pypi-publish@release/v1
+        run: echo "PYPI_API_TOKEN is not set; skipping PyPI publish."
 
       - name: Create GitHub release
         env:
